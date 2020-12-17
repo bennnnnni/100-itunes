@@ -11,3 +11,36 @@
   color: #095d87;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.button {
+  background-color: #0f9999;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.accordion {
+  margin-bottom: 10px;
+}
+
+.badge {
+  background-color: #095d87;
+  color: white;
+  padding: 5px 9px 5px 9px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin: 5px;
+}
+
+.reset-button {
+  margin-top: 5px;
+}
+
+.link-button {
+  margin-left: -10px;
+}
