@@ -23,6 +23,7 @@ const MainView = () => {
     year: "",
     genre: "",
   });
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchAlbums()
@@ -39,6 +40,7 @@ const MainView = () => {
 
   const handleTitleChange = e => {
     e.preventDefault();
+    setSearchTerm(e.target.value);
     const filterAlbums = albums =>
       albums.filter(album =>
         album["im:name"].label
@@ -98,6 +100,17 @@ const MainView = () => {
     }
   };
 
+  const resetSearch = () => {
+    setSearchFields({
+      artist: "",
+      year: "",
+      genre: "",
+    });
+    setFilteredAlbums(null);
+    setAdvancedAlbums(null);
+    setSearchTerm("");
+  };
+
   // conditoinal rendering for the albums
   let results = null;
   if (loading) {
@@ -143,6 +156,7 @@ const MainView = () => {
                     <Form.Control
                       placeholder="Search for title"
                       onChange={handleTitleChange}
+                      value={searchTerm}
                     />
                   </Form.Group>
                 </Form>
@@ -160,8 +174,12 @@ const MainView = () => {
                 </Row>
                 <Row className="d-flex justify-content-start align-items-center">
                   <Col>
-                    <Button bsPrefix="button reset-button">Reset</Button>
-
+                    <Button
+                      bsPrefix="button reset-button"
+                      onClick={resetSearch}
+                    >
+                      Reset
+                    </Button>
                     {Object.values(searchFields).map((filter, idx) => {
                       if (filter) {
                         return (
@@ -185,6 +203,7 @@ const MainView = () => {
                           <Form.Control
                             placeholder="Artist"
                             onChange={handleAdvancedSearchChange}
+                            value={searchFields.artist}
                           />
                           <Form.Text className="text-muted">
                             Search for artist
@@ -197,6 +216,7 @@ const MainView = () => {
                         <Form.Control
                           placeholder="Realease Year"
                           onChange={handleAdvancedSearchChange}
+                          value={searchFields.year}
                         />
                         <Form.Text className="text-muted">
                           Search for release year
@@ -207,6 +227,7 @@ const MainView = () => {
                         <Form.Control
                           placeholder="Genre"
                           onChange={handleAdvancedSearchChange}
+                          value={searchFields.genre}
                         />
                         <Form.Text className="text-muted">
                           Search for genre
