@@ -12,9 +12,8 @@ import { fetchAlbums } from "./fetchAlbums";
 const MainView = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [albums, setAlbums] = useState([]);
+  const [albums, setAlbums] = useState(null);
   const [filteredAlbums, setFilteredAlbums] = useState(null);
-  const [searchFiredOnce, setSearchFiredOnce] = useState(false);
 
   useEffect(() => {
     fetchAlbums()
@@ -36,9 +35,23 @@ const MainView = () => {
         .toLowerCase()
         .includes(e.target.value.toLowerCase())
     );
-    setSearchFiredOnce(true);
     setFilteredAlbums(filteredAlbums);
   };
+
+  let results = null;
+  if (loading) {
+    results = (
+      <Row className="d-flex justify-content-center"> Loading ... </Row>
+    );
+  } else if (error) {
+    results = (
+      <Row className="d-flex justify-content-center">
+        Sorry, an error occured
+      </Row>
+    );
+  } else if (albums) {
+    results = <ReultsArea albums={filteredAlbums ? filteredAlbums : albums} />;
+  }
 
   return (
     <div className="root">
@@ -60,19 +73,7 @@ const MainView = () => {
             </Form.Group>
           </Form>
         </Row>
-        {loading ? (
-          <Row className="d-flex justify-content-center"> Loading ... </Row>
-        ) : error ? (
-          <Row className="d-flex justify-content-center">
-            {" "}
-            Sorry, an error occured{" "}
-          </Row>
-        ) : (
-          <ReultsArea
-            albums={filteredAlbums ? filteredAlbums : albums}
-            searched={searchFiredOnce}
-          />
-        )}
+        {results}
       </Container>
     </div>
   );

@@ -5,9 +5,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const ResultsArea = props => {
-  const { albums, searched } = props;
+  const { albums } = props;
 
-  if (albums.length === 0 && searched)
+  if (albums.length === 0)
     return (
       <Row className="d-flex justify-content-center">Found no results</Row>
     );
