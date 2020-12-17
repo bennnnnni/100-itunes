@@ -6,24 +6,8 @@
   background-color: #ffffff;
 }
 
-.card-col {
-  margin-bottom: 20px;
-}
-
-.chart-number {
-  margin-left: 5px;
-  font-size: 50px;
-  color: #095d87;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.header-1 {
+.header {
   font-size: 30px;
   color: #095d87;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.logo {
-  margin: 5px;
-  width: 200px;
 }

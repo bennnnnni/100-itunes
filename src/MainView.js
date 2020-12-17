@@ -58,7 +58,7 @@ const MainView = () => {
       <Container>
         <Row className="d-flex justify-content-between">
           <Col className="d-flex flex-column" md={3}>
-            <p className="header-1">
+            <p className="header">
               Top 100 <b>Albums</b>
             </p>
           </Col>
