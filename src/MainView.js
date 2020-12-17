@@ -25,8 +25,8 @@ const MainView = () => {
         }));
         setAlbums(rankedAlbums);
       })
-      .catch(e => setError(e));
-    setLoading(false);
+      .catch(e => setError(e))
+      .finally(setLoading(false));
   }, []);
 
   const handleChange = e => {
