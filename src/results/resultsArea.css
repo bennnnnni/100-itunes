@@ -8,3 +8,31 @@
   color: #095d87;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.img-container {
+  align-self: center;
+  position: relative;
+}
+
+.img-overlay {
+  background-color: black;
+  border-radius: 3px;
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  opacity: 40%;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.img-overlay:hover {
+  transition: 500ms;
+  opacity: 0%;
+}
+
+.img-rank {
+  font-size: 64px;
+  margin-top: 30px;
+  font-weight: 800;
+  text-shadow: #095d87;
+}

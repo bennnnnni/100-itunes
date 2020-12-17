@@ -19,7 +19,6 @@ const ResultsArea = props => {
       {albums.map((album, idx) => (
         <Col md={10} xl={6} className="card-col" key={idx}>
           <Card className="d-flex flex-row justify-content-start align-items-center">
-            <p className="chart-number">{album.rank}</p>
             <Card.Body>
               <Card.Title>{album["im:name"].label}</Card.Title>
               <Card.Subtitle>{album["im:artist"].label}</Card.Subtitle>
@@ -29,12 +28,17 @@ const ResultsArea = props => {
                 }`}
               </Card.Text>
             </Card.Body>
-            <Card.Img
-              data-testid="card-image"
-              variant="left"
-              style={{ width: "150px" }}
-              src={album["im:image"][2].label}
-            ></Card.Img>
+            <div className="img-container">
+              <div className="img-overlay">
+                <p className="img-rank">{album.rank}</p>
+              </div>
+              <Card.Img
+                data-testid="card-image"
+                variant="left"
+                style={{ width: "150px", borderRadius: "3px" }}
+                src={album["im:image"][2].label}
+              />
+            </div>
           </Card>
         </Col>
       ))}

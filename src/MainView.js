@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
 import "./MainView.css";
-import ReultsArea from "./results/resultsArea";
+import ResultsArea from "./results/resultsArea";
 import { fetchAlbums } from "./fetchAlbums";
 
 const MainView = () => {
@@ -50,7 +50,7 @@ const MainView = () => {
       </Row>
     );
   } else if (albums) {
-    results = <ReultsArea albums={filteredAlbums ? filteredAlbums : albums} />;
+    results = <ResultsArea albums={filteredAlbums ? filteredAlbums : albums} />;
   }
 
   return (
