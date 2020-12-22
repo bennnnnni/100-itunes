@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import "./resultsArea.css";
+import "./resultsArea.scss";
 
 const ResultsArea = props => {
   const { albums } = props;
@@ -19,7 +19,7 @@ const ResultsArea = props => {
       {albums.map((album, idx) => (
         <Col md={10} xl={6} className="card-col" key={idx}>
           <Card className="d-flex flex-row justify-content-start align-items-center">
-            <Card.Body>
+            <Card.Body className="align-self-start">
               <Card.Title>{album["im:name"].label}</Card.Title>
               <Card.Subtitle>{album["im:artist"].label}</Card.Subtitle>
               <Card.Text>
@@ -29,8 +29,8 @@ const ResultsArea = props => {
               </Card.Text>
             </Card.Body>
             <div className="img-container">
-              <div className="img-overlay">
-                <p className="img-rank">{album.rank}</p>
+              <div>
+                <p>{album.rank}</p>
               </div>
               <Card.Img
                 data-testid="card-image"

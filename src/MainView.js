@@ -8,7 +8,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-import "./MainView.css";
+import "./MainView.scss";
 import ResultsArea from "./results/resultsArea";
 import { fetchAlbums } from "./fetchAlbums";
 
