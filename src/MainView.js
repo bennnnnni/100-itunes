@@ -139,17 +139,10 @@ const MainView = () => {
 
   return (
     <div className="root">
-      <Container>
-        <Row className="d-flex justify-content-between">
-          <Col className="d-flex flex-column" md={3}>
-            <p className="header">
-              Top 100 <b>Albums</b>
-            </p>
-          </Col>
-        </Row>
+      <Container fluid>
         <Row className="d-flex justify-content-start align-items-start">
-          <Accordion as={Col} xs={8} md={6} className="accordion">
-            <Card>
+          <Accordion as={Col} xs={10} md={6} className="accordion">
+            <Card className="search-card">
               <Card.Header>
                 <Form onSubmit={e => e.preventDefault()}>
                   <Form.Group controlId="title">
@@ -157,6 +150,7 @@ const MainView = () => {
                       placeholder="Search for title"
                       onChange={handleTitleChange}
                       value={searchTerm}
+                      className="form-input"
                     />
                   </Form.Group>
                 </Form>
@@ -204,6 +198,7 @@ const MainView = () => {
                             placeholder="Artist"
                             onChange={handleAdvancedSearchChange}
                             value={searchFields.artist}
+                            className="form-input"
                           />
                           <Form.Text className="text-muted">
                             Search for artist
@@ -217,6 +212,7 @@ const MainView = () => {
                           placeholder="Realease Year"
                           onChange={handleAdvancedSearchChange}
                           value={searchFields.year}
+                          className="form-input"
                         />
                         <Form.Text className="text-muted">
                           Search for release year
@@ -228,6 +224,7 @@ const MainView = () => {
                           placeholder="Genre"
                           onChange={handleAdvancedSearchChange}
                           value={searchFields.genre}
+                          className="form-input"
                         />
                         <Form.Text className="text-muted">
                           Search for genre
