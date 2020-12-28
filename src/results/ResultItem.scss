@@ -61,7 +61,13 @@ $secondary: #03dac5;
   .card-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 0% 0%;
+
+    .card-header-content {
+      color: rgba(255, 255, 255, 0.646);
+      margin: 0.5em;
+    }
   }
 }
