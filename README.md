@@ -2,8 +2,8 @@
 
 A little application to list the current top 100 Albums on Itunes
 
-<img src="images/mobile_view.png" width="400px"/>
-<img src="images/desktop_view.png" width="400px"/>
+<img src="images/mobile.png" width="400px"/>
+<img src="images/desktop.png" width="400px"/>
 
 I used
 
@@ -20,6 +20,8 @@ I used
 - how to use [react-bootstrap](https://react-bootstrap.github.io/)
 - the use of css flexbox inside `react-bootstrap`
 - handle advanced filtering for inputs
+- creating a dark theme color palette
+- CSS effects and filtering
 
 ---
 
