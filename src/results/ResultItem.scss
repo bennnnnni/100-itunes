@@ -10,12 +10,8 @@ $secondary: #03dac5;
 
   img {
     width: 100%;
-    opacity: 40%;
-  }
-
-  img:hover {
-    opacity: 80%;
-    transition: 500ms;
+    filter: grayscale(80%);
+    opacity: 20%;
   }
 
   p {
@@ -66,8 +62,25 @@ $secondary: #03dac5;
     padding: 0% 0%;
 
     .card-header-content {
-      color: rgba(255, 255, 255, 0.646);
+      color: #ffffff;
       margin: 0.5em;
+      opacity: 0%;
     }
   }
+}
+
+.result-card:hover .card-header-content {
+  display: block;
+  transition: 500ms;
+  opacity: 80%;
+}
+
+.result-card:hover img {
+  opacity: 80%;
+  transition: 500ms;
+  filter: grayscale(0%);
+}
+
+.result-card:hover .result-rank > p {
+  color: $primary;
 }
