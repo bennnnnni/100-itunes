@@ -126,7 +126,7 @@ const MainView = () => {
   } else if (albums) {
     results = (
       <ResultsArea
-        albums={
+        results={
           advancedAlbums
             ? advancedAlbums
             : filteredAlbums

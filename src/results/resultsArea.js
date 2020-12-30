@@ -7,18 +7,18 @@ import Resultitem from "./ResultItem";
 import "./resultsArea.scss";
 
 const ResultsArea = props => {
-  const { albums } = props;
+  const { results } = props;
 
-  if (albums.length === 0)
+  if (results.length === 0)
     return (
       <Row className="d-flex justify-content-center">Found no results</Row>
     );
 
   return (
     <Row data-testid="results-container">
-      {albums.map((album, idx) => (
+      {results.map((result, idx) => (
         <Col className="card-col" key={idx}>
-          <Resultitem result={album} idx={idx} />
+          <Resultitem result={result} idx={idx} />
         </Col>
       ))}
     </Row>
