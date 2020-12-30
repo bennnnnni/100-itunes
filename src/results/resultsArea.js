@@ -17,7 +17,15 @@ const ResultsArea = props => {
   return (
     <Row data-testid="results-container">
       {results.map((result, idx) => (
-        <Col className="card-col" key={idx}>
+        <Col
+          xl="auto"
+          lg="auto"
+          md="auto"
+          sm="auto"
+          xs="auto"
+          className="card-col"
+          key={idx}
+        >
           <Resultitem result={result} idx={idx} />
         </Col>
       ))}
