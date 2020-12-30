@@ -12,6 +12,8 @@ $secondary: #03dac5;
     width: 100%;
     filter: grayscale(80%);
     opacity: 20%;
+    transition: filter 250ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
   }
 
   p {
@@ -37,6 +39,7 @@ $secondary: #03dac5;
       font-size: 1.5em;
       font-weight: 800;
       margin: 0.1em;
+      transition: color 250ms ease-in-out;
     }
   }
 
@@ -65,12 +68,12 @@ $secondary: #03dac5;
       color: #ffffff;
       margin: 0.5em;
       opacity: 0%;
+      transition: opacity 250ms ease-in-out;
     }
   }
 }
 
 .result-card:hover .card-header-content {
-  display: block;
   transition: 500ms;
   opacity: 80%;
 }
