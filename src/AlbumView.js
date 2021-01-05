@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import MainView from "./MainView";
-import { fetchAlbums } from "./fetchAlbums";
+import { fetchAlbums } from "./api";
 import { transformAlbums } from "./utils";
 
 const AlbumView = () => {
