@@ -4,6 +4,5 @@ export const fetchPodcasts = async () => {
     "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/100/explicit.json";
   const response = await fetch(proxyURL + url);
   const data = await response.json();
-  console.log(data.feed.results);
   return data.feed.results;
 };

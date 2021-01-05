@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
 import "./MainView.scss";
 import ResultsArea from "./results/resultsArea";
@@ -92,8 +93,7 @@ const MainView = props => {
   if (loading) {
     results = (
       <Row className="d-flex justify-content-center no-results">
-        {" "}
-        Loading ...{" "}
+        <Spinner animation="border" className="primary" />
       </Row>
     );
   } else if (error) {

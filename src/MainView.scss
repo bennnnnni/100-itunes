@@ -1,6 +1,10 @@
 $primary: #bb86fc;
 $secondary: #03dac5;
 
+.primary {
+  color: $primary;
+}
+
 .root {
   background-color: #121212;
   margin-top: 56px;
