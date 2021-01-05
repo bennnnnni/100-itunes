@@ -16,3 +16,22 @@ export const transformAlbums = albums => {
   }
   return transformedAlbums;
 };
+
+export const transformPodcasts = podcasts => {
+  let transformedPodcasts = null;
+  try {
+    transformedPodcasts = podcasts.map((podacast, idx) => {
+      return {
+        rank: idx + 1,
+        artist: podacast.artistName,
+        name: podacast.name,
+        img: podacast.artworkUrl100,
+        year: podacast.releaseDate.split("-")[0],
+        genre: podacast.genres[0].name,
+      };
+    });
+  } catch (e) {
+    console.error(e);
+  }
+  return transformedPodcasts;
+};
