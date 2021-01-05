@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import "./MainView.scss";
 import ResultsArea from "./results/resultsArea";
 import { fetchAlbums } from "./fetchAlbums";
+import { transformAlbums } from "./utils";
 
 const MainView = () => {
   const [error, setError] = useState("");
@@ -28,13 +29,13 @@ const MainView = () => {
   useEffect(() => {
     fetchAlbums()
       .then(res => {
-        const rankedAlbums = res.map((albums, idx) => ({
-          ...albums,
-          rank: idx + 1,
-        }));
-        setAlbums(rankedAlbums);
+        const transformedAlbums = transformAlbums(res);
+        setAlbums(transformedAlbums);
       })
-      .catch(e => setError(e))
+      .catch(e => {
+        console.error(e);
+        setError(e);
+      })
       .finally(setLoading(false));
   }, []);
 
@@ -43,9 +44,7 @@ const MainView = () => {
     setSearchTerm(e.target.value);
     const filterAlbums = albums =>
       albums.filter(album =>
-        album["im:name"].label
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase())
+        album.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
     let filteredAlbums = filterAlbums(advancedAlbums ? advancedAlbums : albums);
 
@@ -67,18 +66,14 @@ const MainView = () => {
 
     if (searchFields.artist) {
       startAlbums = startAlbums.filter(album =>
-        album["im:artist"].label
-          .toLowerCase()
-          .includes(searchFields.artist.toLowerCase())
+        album.artist.toLowerCase().includes(searchFields.artist.toLowerCase())
       );
       setAdvancedAlbums(startAlbums);
     }
 
     if (searchFields.year) {
       startAlbums = startAlbums.filter(album =>
-        album["im:releaseDate"].attributes.label
-          .toLowerCase()
-          .includes(searchFields.year.toLowerCase())
+        album.year.toLowerCase().includes(searchFields.year.toLowerCase())
       );
 
       setAdvancedAlbums(startAlbums);
@@ -86,9 +81,7 @@ const MainView = () => {
 
     if (searchFields.genre) {
       startAlbums = startAlbums.filter(album =>
-        album["category"].attributes.term
-          .toLowerCase()
-          .includes(searchFields.genre.toLowerCase())
+        album.genre.toLowerCase().includes(searchFields.genre.toLowerCase())
       );
 
       setAdvancedAlbums(startAlbums);
@@ -122,7 +115,7 @@ const MainView = () => {
     );
   } else if (error) {
     results = (
-      <Row className="d-flex justify-content-center no-rsults">
+      <Row className="d-flex justify-content-center no-results">
         Sorry, an error occured
       </Row>
     );

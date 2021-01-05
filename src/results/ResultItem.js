@@ -9,14 +9,12 @@ const ResultItem = ({ result }) => {
         <div className="result-rank">
           <p>{result.rank}</p>
         </div>
-        <p className="card-header-content">{result.category.attributes.term}</p>
-        <p className="card-header-content">
-          {result["im:releaseDate"].attributes.label.split(" ")[2]}
-        </p>
+        <p className="card-header-content">{result.genre}</p>
+        <p className="card-header-content">{result.year}</p>
       </div>
-      <img src={result["im:image"][2].label} alt="" />
-      <p className="result-title">{result["im:name"].label}</p>
-      <p className="result-artist">{result["im:artist"].label}</p>
+      <img src={result.img} alt="" />
+      <p className="result-title">{result.name}</p>
+      <p className="result-artist">{result.artist}</p>
     </div>
   );
 };

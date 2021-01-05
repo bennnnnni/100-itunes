@@ -28,7 +28,7 @@ const ResultsArea = props => {
           className="card-col"
           key={idx}
         >
-          <Resultitem result={result} idx={idx} />
+          <Resultitem result={result} />
         </Col>
       ))}
     </Row>
