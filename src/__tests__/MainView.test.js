@@ -1,46 +1,44 @@
 import React from "react";
 
-import { render, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import MainView from "../MainView";
-import * as fetchModule from "../fetchAlbums";
+import * as api from "../api";
 
-test("<MainView/> renders header and searchfield", () => {
-  const { getByText, getByPlaceholderText } = render(<MainView />);
-  //header
-  expect(getByText(/top 100/i)).toBeInTheDocument();
-  expect(getByText(/albums/i)).toBeInTheDocument();
-
+test("<MainView/> renders searcharea", () => {
+  const { getByRole, getByText, getByPlaceholderText, debug } = render(
+    <MainView />
+  );
+  console.log(debug());
   //searchfield
   expect(getByPlaceholderText(/search for title/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/artist/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/release year/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/genre/i)).toBeInTheDocument();
+  expect(getByRole("button", { name: "Advanced Search" })).toBeInTheDocument();
+  expect(getByRole("button", { name: "Reset" })).toBeInTheDocument();
+  expect(getByRole("button", { name: "Apply" })).toBeInTheDocument();
 });
 
 test("<MainView/> renders error screen when error", async () => {
-  jest
-    .spyOn(fetchModule, "fetchAlbums")
-    .mockRejectedValue(new Error("Async error"));
+  jest.spyOn(api, "fetchAlbums").mockRejectedValue(new Error("Async error"));
 
-  const { getByText } = render(<MainView />);
-  await waitFor(() =>
-    expect(getByText(/Sorry, an error occured/i)).toBeInTheDocument()
-  );
+  const { getByText } = render(<MainView error={true} />);
+  expect(getByText(/Sorry, an error occured/i)).toBeInTheDocument();
 });
 
-const fakeAlbum = {
-  "im:name": { label: "fake title" },
-  "im:artist": {
-    label: "fake artist",
+const fakeItems = [
+  {
+    rank: 1,
+    name: "fake title",
+    artist: "fake artist",
+    year: "fake year",
+    img: "fake img",
+    genre: "fake",
   },
-  "im:releaseDate": { attributes: { label: "12 november 2020" } },
-  category: { attributes: { term: "fake genre" } },
-  "im:image": [{}, {}, { label: "fakeImgURL" }],
-};
+];
 
 test("<MainView/> renders results when given", async () => {
-  jest.spyOn(fetchModule, "fetchAlbums").mockResolvedValue([fakeAlbum]);
-
-  const { getByTestId } = render(<MainView />);
-  await waitFor(() =>
-    expect(getByTestId("results-container")).toBeInTheDocument()
-  );
+  const { getByTestId } = render(<MainView items={fakeItems} />);
+  expect(getByTestId("results-container")).toBeInTheDocument();
 });

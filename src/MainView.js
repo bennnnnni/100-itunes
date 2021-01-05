@@ -184,7 +184,7 @@ const MainView = props => {
                     <Row>
                       <Form.Group lg={6} as={Col} controlId="year">
                         <Form.Control
-                          placeholder="Realease Year"
+                          placeholder="Release Year"
                           onChange={handleAdvancedSearchChange}
                           value={searchFields.year}
                           className="form-input"
