@@ -6,8 +6,6 @@ import Navigation from "./Navbar/Navbar";
 function App() {
   const [currentView, setCurrentView] = useState("albums");
 
-  console.log(currentView);
-
   const renderCorrectView = () => {
     if (currentView === "albums") {
       return <MainView />;

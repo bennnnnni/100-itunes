@@ -3,7 +3,6 @@ import React from "react";
 import "./ResultItem.scss";
 
 const ResultItem = ({ result }) => {
-  console.log(result);
   return (
     <div className="result-card">
       <div className="card-header">
