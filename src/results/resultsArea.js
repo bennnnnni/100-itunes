@@ -11,7 +11,9 @@ const ResultsArea = props => {
 
   if (results.length === 0)
     return (
-      <Row className="d-flex justify-content-center">Found no results</Row>
+      <Row className="d-flex justify-content-center no-results">
+        Found no results
+      </Row>
     );
 
   return (

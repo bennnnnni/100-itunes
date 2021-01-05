@@ -115,11 +115,14 @@ const MainView = () => {
   let results = null;
   if (loading) {
     results = (
-      <Row className="d-flex justify-content-center"> Loading ... </Row>
+      <Row className="d-flex justify-content-center no-results">
+        {" "}
+        Loading ...{" "}
+      </Row>
     );
   } else if (error) {
     results = (
-      <Row className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center no-rsults">
         Sorry, an error occured
       </Row>
     );
