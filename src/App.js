@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 
-import MainView from "./MainView";
+import AlbumView from "./AlbumView";
 import Navigation from "./Navbar/Navbar";
+import PodcastView from "./PodcastView";
 
 function App() {
   const [currentView, setCurrentView] = useState("albums");
 
   const renderCorrectView = () => {
     if (currentView === "albums") {
-      return <MainView />;
+      return <AlbumView />;
     }
     if (currentView === "podcasts") {
-      return null;
+      return <PodcastView />;
     }
-    return <MainView />;
+    return <AlbumView />;
   };
 
   return (

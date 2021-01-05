@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -10,15 +10,11 @@ import Button from "react-bootstrap/Button";
 
 import "./MainView.scss";
 import ResultsArea from "./results/resultsArea";
-import { fetchAlbums } from "./fetchAlbums";
-import { transformAlbums } from "./utils";
 
-const MainView = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [albums, setAlbums] = useState(null);
-  const [filteredAlbums, setFilteredAlbums] = useState(null);
-  const [advancedAlbums, setAdvancedAlbums] = useState(null);
+const MainView = props => {
+  const { items, loading, error } = props;
+  const [filteredItems, setFilteredItems] = useState(null);
+  const [advancedItems, setAdvancedItems] = useState(null);
   const [searchFields, setSearchFields] = useState({
     artist: "",
     year: "",
@@ -26,33 +22,20 @@ const MainView = () => {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    fetchAlbums()
-      .then(res => {
-        const transformedAlbums = transformAlbums(res);
-        setAlbums(transformedAlbums);
-      })
-      .catch(e => {
-        console.error(e);
-        setError(e);
-      })
-      .finally(setLoading(false));
-  }, []);
-
   const handleTitleChange = e => {
     e.preventDefault();
     setSearchTerm(e.target.value);
-    const filterAlbums = albums =>
-      albums.filter(album =>
-        album.name.toLowerCase().includes(e.target.value.toLowerCase())
+    const filterItems = items =>
+      items.filter(item =>
+        item.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
-    let filteredAlbums = filterAlbums(advancedAlbums ? advancedAlbums : albums);
+    let filtered = filterItems(advancedItems ? advancedItems : items);
 
-    //reset filtered albums when search term is empty
+    //reset filtered items when search term is empty
     if (e.target.value === "") {
-      filteredAlbums = null;
+      filtered = null;
     }
-    setFilteredAlbums(filteredAlbums);
+    setFilteredItems(filtered);
   };
 
   const handleAdvancedSearchChange = e => {
@@ -61,35 +44,35 @@ const MainView = () => {
   };
 
   const submitAdvancedSearch = () => {
-    //start either with albums or filtered albums
-    let startAlbums = filteredAlbums ? filteredAlbums : albums;
+    //start either with items or filtered items
+    let startItems = filteredItems ? filteredItems : items;
 
     if (searchFields.artist) {
-      startAlbums = startAlbums.filter(album =>
-        album.artist.toLowerCase().includes(searchFields.artist.toLowerCase())
+      startItems = startItems.filter(item =>
+        item.artist.toLowerCase().includes(searchFields.artist.toLowerCase())
       );
-      setAdvancedAlbums(startAlbums);
+      setAdvancedItems(startItems);
     }
 
     if (searchFields.year) {
-      startAlbums = startAlbums.filter(album =>
-        album.year.toLowerCase().includes(searchFields.year.toLowerCase())
+      startItems = startItems.filter(item =>
+        item.year.toLowerCase().includes(searchFields.year.toLowerCase())
       );
 
-      setAdvancedAlbums(startAlbums);
+      setAdvancedItems(startItems);
     }
 
     if (searchFields.genre) {
-      startAlbums = startAlbums.filter(album =>
-        album.genre.toLowerCase().includes(searchFields.genre.toLowerCase())
+      startItems = startItems.filter(item =>
+        item.genre.toLowerCase().includes(searchFields.genre.toLowerCase())
       );
 
-      setAdvancedAlbums(startAlbums);
+      setAdvancedItems(startItems);
     }
 
-    //if all advanced filters are empty, set startAlbums back to filtered or unfiltered albums
+    //if all advanced filters are empty, set startItems back to filtered or unfiltered albums
     if (!searchFields.artist && !searchFields.year && !searchFields.genre) {
-      setAdvancedAlbums(null);
+      setAdvancedItems(null);
     }
   };
 
@@ -99,12 +82,12 @@ const MainView = () => {
       year: "",
       genre: "",
     });
-    setFilteredAlbums(null);
-    setAdvancedAlbums(null);
+    setFilteredItems(null);
+    setAdvancedItems(null);
     setSearchTerm("");
   };
 
-  // conditoinal rendering for the albums
+  // conditoinal rendering for the items
   let results = null;
   if (loading) {
     results = (
@@ -119,15 +102,11 @@ const MainView = () => {
         Sorry, an error occured
       </Row>
     );
-  } else if (albums) {
+  } else if (items) {
     results = (
       <ResultsArea
         results={
-          advancedAlbums
-            ? advancedAlbums
-            : filteredAlbums
-            ? filteredAlbums
-            : albums
+          advancedItems ? advancedItems : filteredItems ? filteredItems : items
         }
       />
     );
