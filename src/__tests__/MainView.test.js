@@ -6,10 +6,7 @@ import MainView from "../MainView";
 import * as api from "../api";
 
 test("<MainView/> renders searcharea", () => {
-  const { getByRole, getByText, getByPlaceholderText, debug } = render(
-    <MainView />
-  );
-  console.log(debug());
+  const { getByRole, getByPlaceholderText } = render(<MainView />);
   //searchfield
   expect(getByPlaceholderText(/search for title/i)).toBeInTheDocument();
   expect(getByPlaceholderText(/artist/i)).toBeInTheDocument();

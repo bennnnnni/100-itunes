@@ -1,5 +1,5 @@
 export const fetchPodcasts = async () => {
-  const proxyURL = "https://cors-anywhere.herokuapp.com/";
+  const proxyURL = "https://thingproxy.freeboard.io/fetch/";
   const url =
     "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/100/explicit.json";
   const response = await fetch(proxyURL + url);
