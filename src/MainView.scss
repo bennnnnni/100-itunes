@@ -17,7 +17,7 @@ $secondary: #03dac5;
 }
 
 .button {
-  background-color: $primary;
+  background-color: $secondary;
   color: rgb(0, 0, 0);
   padding: 8px;
   border: none;
@@ -27,7 +27,7 @@ $secondary: #03dac5;
 }
 
 .button:hover {
-  background-color: #b476ff;
+  background-color: #02bdaa;
 }
 
 .accordion {
@@ -64,10 +64,10 @@ $secondary: #03dac5;
 
   .link-button {
     float: right;
-    color: $primary;
+    color: #00ae9d;
   }
 
   .link-button:hover {
-    color: $primary;
+    color: $secondary;
   }
 }

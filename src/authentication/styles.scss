@@ -2,7 +2,7 @@ $primary: #bb86fc;
 $secondary: #03dac5;
 
 .login-btn {
-  background-color: $secondary;
+  background-color: $primary;
   color: rgb(0, 0, 0);
   padding: 8px;
   border: none;
@@ -12,19 +12,19 @@ $secondary: #03dac5;
 }
 
 .login-btn:hover {
-  background-color: #02bdaa;
+  background-color: #b476ff;
 }
 
 .logout-btn {
   background-color: #272727;
   color: rgb(255, 255, 255);
   padding: 8px;
-  border-color: $secondary;
+  border-color: $primary;
   border-radius: 5px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 .logout-btn:hover {
-  background-color: #3d6c677b;
+  background-color: #37254dd4;
 }
