@@ -15,6 +15,7 @@ const Navigation = ({ selectView }) => {
       <Nav defaultActiveKey="albums" onSelect={key => selectView(key)}>
         <Nav.Link eventKey="albums">Albums</Nav.Link>
         <Nav.Link eventKey="podcasts">Podcasts</Nav.Link>
+        {isAuthenticated && <Nav.Link>Favorites</Nav.Link>}
       </Nav>
       <Nav className="ml-auto">
         <Nav.Item>
