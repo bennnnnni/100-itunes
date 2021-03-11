@@ -2,22 +2,33 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: "#03dac5",
+    },
+  },
+});
+
 ReactDOM.render(
-  <Auth0Provider
-    domain={domain}
-    clientId={clientId}
-    redirectUri={window.location.origin}
-  >
-    <App />
-  </Auth0Provider>,
+  <ThemeProvider theme={theme}>
+    <Auth0Provider
+      domain={domain}
+      clientId={clientId}
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
+  </ThemeProvider>,
 
   document.getElementById("root")
 );
