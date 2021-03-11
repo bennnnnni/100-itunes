@@ -9,6 +9,7 @@ export const transformAlbums = albums => {
         img: album["im:image"][2].label,
         year: album["im:releaseDate"].attributes.label.split(" ")[2],
         genre: album.category.attributes.label,
+        fav: false,
       };
     });
   } catch (e) {
@@ -28,6 +29,7 @@ export const transformPodcasts = podcasts => {
         img: podacast.artworkUrl100,
         year: podacast.releaseDate.split("-")[0],
         genre: podacast.genres[0].name,
+        fav: false,
       };
     });
   } catch (e) {
