@@ -1,8 +1,11 @@
+import { nanoid } from "nanoid";
+
 export const transformAlbums = albums => {
   let transformedAlbums = null;
   try {
     transformedAlbums = albums.map((album, idx) => {
       return {
+        id: nanoid(),
         rank: idx + 1,
         artist: album["im:artist"].label,
         name: album["im:name"].label,
@@ -23,6 +26,7 @@ export const transformPodcasts = podcasts => {
   try {
     transformedPodcasts = podcasts.map((podacast, idx) => {
       return {
+        id: nanoid(),
         rank: idx + 1,
         artist: podacast.artistName,
         name: podacast.name,
