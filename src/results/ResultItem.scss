@@ -8,12 +8,25 @@ $secondary: #03dac5;
   align-items: center;
   width: 240px;
 
-  img {
-    width: 100%;
-    filter: grayscale(80%);
-    opacity: 20%;
-    transition: filter 250ms ease-in-out;
-    transition: opacity 250ms ease-in-out;
+  .img-container {
+    width: 240px;
+    position: relative;
+
+    .img-checkbox {
+      opacity: 0%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    img {
+      width: 100%;
+      opacity: 20%;
+      filter: grayscale(80%);
+      transition: filter 250ms ease-in-out;
+      transition: opacity 250ms ease-in-out;
+    }
   }
 
   p {
@@ -59,7 +72,7 @@ $secondary: #03dac5;
     height: 8px;
     bottom: 0;
     left: 0;
-    background-color: $primary;
+    background-color: $secondary;
     visibility: hidden;
     opacity: 60%;
     transition: all 0.3s ease-in-out;
@@ -81,24 +94,35 @@ $secondary: #03dac5;
   }
 }
 
-.result-card:hover .card-header-content {
-  transition: 500ms;
-  opacity: 80%;
-}
+.result-card:hover {
+  .card-header-content {
+    transition: 500ms;
+    opacity: 80%;
+  }
 
-.result-card:hover img {
-  opacity: 80%;
-  transition: 500ms;
-  filter: grayscale(0%);
-}
+  .img-container .img-checkbox {
+    opacity: 60%;
+    transition: opacity 250ms ease-in-out;
+  }
 
-.result-card:hover .result-rank > p {
-  color: $primary;
-}
+  .img-container .img-checkbox:hover {
+    opacity: 90%;
+  }
 
-.result-card:hover .result-artist::before {
-  visibility: visible;
-  width: 100%;
+  img {
+    opacity: 40%;
+    transition: 500ms;
+    filter: grayscale(60%);
+  }
+
+  .result-rank > p {
+    color: $secondary;
+  }
+
+  .result-artist::before {
+    visibility: visible;
+    width: 100%;
+  }
 }
 
 .no-results {
