@@ -1,8 +1,8 @@
 $primary: #bb86fc;
 $secondary: #03dac5;
 
-.primary {
-  color: $primary;
+.secondary {
+  color: $secondary;
 }
 
 .root {
@@ -39,16 +39,17 @@ $secondary: #03dac5;
     border-radius: 0%;
   }
   .form-input {
-    background-color: #383838;
     border: none;
+    background-color: #383838;
     color: rgba(255, 255, 255, 0.872);
   }
   .form-input:focus {
     background-color: #4d4d4d;
     color: rgba(255, 255, 255, 0.872);
   }
+
   .badge {
-    background-color: $secondary;
+    background-color: $primary;
     color: rgb(0, 0, 0);
     padding: 5px 9px 5px 9px;
     border-radius: 10px;

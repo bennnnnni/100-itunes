@@ -93,7 +93,7 @@ const MainView = props => {
   if (loading) {
     results = (
       <Row className="d-flex justify-content-center no-results">
-        <Spinner animation="border" className="primary" />
+        <Spinner animation="border" className="secondary" />
       </Row>
     );
   } else if (error) {
