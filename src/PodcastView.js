@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+
 import MainView from "./MainView";
-import { fetchPodcasts } from "./api";
-import { transformPodcasts } from "./utils";
+import { fetchPodcastsIntoStore } from "./redux/reducers/podcastSlice";
 
 const AlbumView = () => {
-  const [podcasts, setPodcasts] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const podcasts = useSelector(state => state.podcasts);
 
   useEffect(() => {
-    fetchPodcasts()
-      .then(res => {
-        const transformedPodcasts = transformPodcasts(res);
-        setPodcasts(transformedPodcasts);
-        setLoading(false);
-      })
-      .catch(e => {
-        console.error(e);
-        setError(e);
-      });
+    try {
+      dispatch(fetchPodcastsIntoStore);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setError(e);
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log("podcasts", podcasts);
   return <MainView items={podcasts} error={error} loading={loading} />;
 };
 
