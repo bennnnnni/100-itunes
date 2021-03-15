@@ -18,7 +18,7 @@ const ResultItem = ({ result }) => {
         <p className="card-header-content">{result.genre}</p>
         <p className="card-header-content">{result.year}</p>
       </div>
-      <div className="img-container">
+      <div className="img-container" data-testid="card-image">
         <img src={result.img} alt="" />
         {isAuthenticated && (
           <Checkbox

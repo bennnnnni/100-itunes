@@ -5,24 +5,22 @@ import { render } from "@testing-library/react";
 import ResultsArea from "../resultsArea";
 
 test("<ResultsArea/> renders info message when no results are found via search", () => {
-  const fakeProps = { albums: [], searched: true };
+  const fakeProps = { results: [], searched: true };
   const { getByText } = render(<ResultsArea {...fakeProps} />);
 
   expect(getByText(/found no results/i)).toBeInTheDocument();
 });
 
 const fakeAlbum = {
-  "im:name": { label: "fake title" },
-  "im:artist": {
-    label: "fake artist",
-  },
-  "im:releaseDate": { attributes: { label: "12 november 2020" } },
-  category: { attributes: { term: "fake genre" } },
-  "im:image": [{}, {}, { label: "fakeImgURL" }],
+  name: "fake title",
+  artist: "fake artist",
+  year: "2020",
+  genre: "fake genre",
+  img: "fakeImgURL",
 };
 
 test("<ResultsArea/> renders album when given", () => {
-  const fakeProps = { albums: [fakeAlbum], searched: false };
+  const fakeProps = { results: [fakeAlbum], searched: false };
   const { getByText, getByTestId } = render(<ResultsArea {...fakeProps} />);
 
   expect(getByText(/fake title/i)).toBeInTheDocument();
@@ -34,7 +32,7 @@ test("<ResultsArea/> renders album when given", () => {
 
 test("<ResultsArea/> renders multiple albums when given", () => {
   const fakeProps = {
-    albums: [fakeAlbum, fakeAlbum, fakeAlbum, fakeAlbum],
+    results: [fakeAlbum, fakeAlbum, fakeAlbum, fakeAlbum],
     searched: false,
   };
   const { getByTestId } = render(<ResultsArea {...fakeProps} />);
