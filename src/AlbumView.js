@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,19 +6,14 @@ import MainView from "./MainView";
 import { fetchAlbumsIntoStore } from "./redux/reducers/albumSlice";
 
 const AlbumView = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const albums = useSelector(state => state.albums);
+  const albums = useSelector(state => state.albums.items);
+  const loading = useSelector(state => state.albums.loading);
+  const error = useSelector(state => state.albums.error);
 
   useEffect(() => {
-    try {
+    if (!albums) {
       dispatch(fetchAlbumsIntoStore);
-      setLoading(false);
-    } catch (e) {
-      console.error(e);
-      setError(e);
-      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
