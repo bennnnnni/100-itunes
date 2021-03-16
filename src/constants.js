@@ -4,3 +4,9 @@ export const loadingStates = {
   SUCCEEDED: "succeeded",
   FAILED: "failed",
 };
+
+export const appViews = {
+  ALBUMS: "albums",
+  PODCASTS: "podcasts",
+  FAVORITES: "favorites",
+};
