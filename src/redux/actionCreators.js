@@ -5,6 +5,9 @@ import {
   SET_ALBUM_LOADING,
   SET_PODCAST_ERROR,
   SET_PODCAST_LOADING,
+  UPDATE_ALBUM,
+  SET_VIEW,
+  UPDATE_PODCAST,
 } from "./actions";
 
 export const setAlbums = payload => {
@@ -45,6 +48,27 @@ export const setAlbumError = payload => {
 export const setAlbumLoading = payload => {
   return {
     type: SET_ALBUM_LOADING,
+    payload: payload,
+  };
+};
+
+export const updateAlbum = payload => {
+  return {
+    type: UPDATE_ALBUM,
+    payload: payload,
+  };
+};
+
+export const updatePodcast = payload => {
+  return {
+    type: UPDATE_PODCAST,
+    payload: payload,
+  };
+};
+
+export const setView = payload => {
+  return {
+    type: SET_VIEW,
     payload: payload,
   };
 };
