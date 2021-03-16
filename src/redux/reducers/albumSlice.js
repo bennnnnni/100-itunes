@@ -2,18 +2,22 @@ import { SET_ALBUMS, SET_ALBUM_ERROR, SET_ALBUM_LOADING } from "../actions";
 import { fetchAlbums } from "../../api";
 import { setAlbumError, setAlbumLoading, setAlbums } from "../actionCreators";
 import { transformAlbums } from "../../utils";
+import { loadingStates } from "../../constants";
 
-const initialState = { items: null, loading: true, error: "" };
+const { IDLE, LOADING, SUCCEEDED, FAILED } = loadingStates;
+
+const initialState = { items: [], loading: IDLE, error: null };
 
 export const fetchAlbumsIntoStore = async (dispatch, getState) => {
+  dispatch(setAlbumLoading(LOADING));
   try {
     const response = await fetchAlbums();
     const transformedAlbums = transformAlbums(response);
     dispatch(setAlbums(transformedAlbums));
-    dispatch(setAlbumLoading(false));
+    dispatch(setAlbumLoading(SUCCEEDED));
   } catch (e) {
     dispatch(setAlbumError(e));
-    dispatch(setAlbumLoading(false));
+    dispatch(setAlbumLoading(FAILED));
     console.error(e);
   }
 };

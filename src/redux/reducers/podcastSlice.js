@@ -10,18 +10,22 @@ import {
   setPodcastLoading,
 } from "../actionCreators";
 import { transformPodcasts } from "../../utils";
+import { loadingStates } from "../../constants";
 
-const initialState = { items: null, loading: true, error: "" };
+const { IDLE, LOADING, SUCCEEDED, FAILED } = loadingStates;
+
+const initialState = { items: [], loading: IDLE, error: "" };
 
 export const fetchPodcastsIntoStore = async (dispatch, getState) => {
+  dispatch(setPodcastLoading(LOADING));
   try {
     const response = await fetchPodcasts();
     const transformedPodcasts = transformPodcasts(response);
     dispatch(setPodcasts(transformedPodcasts));
-    dispatch(setPodcastLoading(false));
+    dispatch(setPodcastLoading(SUCCEEDED));
   } catch (e) {
-    dispatch(setPodcastError);
-    dispatch(setPodcastLoading(false));
+    dispatch(setPodcastError(e));
+    dispatch(setPodcastLoading(FAILED));
     console.error(e);
   }
 };

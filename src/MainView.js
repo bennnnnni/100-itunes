@@ -11,9 +11,12 @@ import Spinner from "react-bootstrap/Spinner";
 
 import "./MainView.scss";
 import ResultsArea from "./results/resultsArea";
+import { loadingStates } from "./constants";
+
+const { LOADING, SUCCEEDED, FAILED } = loadingStates;
 
 const MainView = props => {
-  const { items, loading, error } = props;
+  const { items, loading } = props;
   const [filteredItems, setFilteredItems] = useState(null);
   const [advancedItems, setAdvancedItems] = useState(null);
   const [searchFields, setSearchFields] = useState({
@@ -90,19 +93,19 @@ const MainView = props => {
 
   // conditoinal rendering for the items
   let results = null;
-  if (loading) {
+  if (loading === LOADING) {
     results = (
       <Row className="d-flex justify-content-center no-results">
         <Spinner animation="border" className="secondary" />
       </Row>
     );
-  } else if (error) {
+  } else if (loading === FAILED) {
     results = (
       <Row className="d-flex justify-content-center no-results">
-        Sorry, an error occured
+        Sorry, an error occured. Please refresh page or try again.
       </Row>
     );
-  } else if (items) {
+  } else if (loading === SUCCEEDED) {
     results = (
       <ResultsArea
         results={

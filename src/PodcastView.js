@@ -12,13 +12,12 @@ const PodcastView = () => {
   const error = useSelector(state => state.podcasts.error);
 
   useEffect(() => {
-    if (!podcasts) {
+    if (podcasts.length === 0) {
       dispatch(fetchPodcastsIntoStore);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("podcasts", podcasts);
   return <MainView items={podcasts} error={error} loading={loading} />;
 };
 

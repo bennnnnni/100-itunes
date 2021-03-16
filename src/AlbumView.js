@@ -12,13 +12,12 @@ const AlbumView = () => {
   const error = useSelector(state => state.albums.error);
 
   useEffect(() => {
-    if (!albums) {
+    if (albums.length === 0) {
       dispatch(fetchAlbumsIntoStore);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("albums keck", albums);
   return <MainView items={albums} error={error} loading={loading} />;
 };
 
