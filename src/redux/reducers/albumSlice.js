@@ -1,4 +1,9 @@
-import { SET_ALBUMS, SET_ALBUM_ERROR, SET_ALBUM_LOADING } from "../actions";
+import {
+  SET_ALBUMS,
+  SET_ALBUM_ERROR,
+  SET_ALBUM_LOADING,
+  UPDATE_ALBUM,
+} from "../actions";
 import { fetchAlbums } from "../../api";
 import { setAlbumError, setAlbumLoading, setAlbums } from "../actionCreators";
 import { transformAlbums } from "../../utils";
@@ -32,6 +37,16 @@ export const albumReducer = (state = initialState, action) => {
     }
     case SET_ALBUM_LOADING: {
       return { ...state, loading: action.payload };
+    }
+    case UPDATE_ALBUM: {
+      // eslint-disable-next-line array-callback-return
+      const updatedAlbums = state.items.map(item => {
+        if (item.id === action.payload.id) {
+          item.fav = action.payload.fav;
+        }
+        return item;
+      });
+      return { ...state, items: updatedAlbums };
     }
     default:
       return state;

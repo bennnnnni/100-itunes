@@ -2,6 +2,7 @@ import {
   SET_PODCASTS,
   SET_PODCAST_LOADING,
   SET_PODCAST_ERROR,
+  UPDATE_PODCAST,
 } from "../actions";
 import { fetchPodcasts } from "../../api";
 import {
@@ -40,6 +41,16 @@ export const podcastReducer = (state = initialState, action) => {
     }
     case SET_PODCAST_ERROR: {
       return { ...state, error: action.payload };
+    }
+    case UPDATE_PODCAST: {
+      // eslint-disable-next-line array-callback-return
+      const updatedPodcasts = state.items.map(item => {
+        if (item.id === action.payload.id) {
+          item.fav = action.payload.fav;
+        }
+        return item;
+      });
+      return { ...state, items: updatedPodcasts };
     }
     default:
       return state;
