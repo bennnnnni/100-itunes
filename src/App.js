@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import AlbumView from "./AlbumView";
 import Navigation from "./Navbar/Navbar";
 import PodcastView from "./PodcastView";
+import FavoritView from "./FavoritView";
 import { appViews } from "./constants";
 
 const { ALBUMS, PODCASTS, FAVORITES } = appViews;
@@ -20,7 +21,7 @@ function App() {
       return <PodcastView />;
     }
     if (currentView === FAVORITES) {
-      return null;
+      return <FavoritView />;
     }
     return <AlbumView />;
   };

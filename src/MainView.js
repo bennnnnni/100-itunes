@@ -102,7 +102,7 @@ const MainView = props => {
   } else if (loading === FAILED) {
     results = (
       <Row className="d-flex justify-content-center no-results">
-        Sorry, an error occured. Please refresh page or try again.
+        Sorry, an error occured.
       </Row>
     );
   } else if (loading === SUCCEEDED) {
