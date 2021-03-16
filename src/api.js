@@ -1,12 +1,10 @@
 export const fetchPodcasts = async () => {
-  const proxyURL = "https://api.allorigins.win/get?url=";
+  const proxyURL = "https://thingproxy.freeboard.io/fetch/";
   const url =
     "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/100/explicit.json";
-  const response = await fetch(proxyURL + encodeURIComponent(url));
-  console.log(response);
+  const response = await fetch(proxyURL + url);
   const data = await response.json();
-  const parsedData = await JSON.parse(data.contents);
-  return parsedData.feed.results;
+  return data.feed.results;
 };
 
 export const fetchAlbums = async () => {
