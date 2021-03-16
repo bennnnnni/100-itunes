@@ -1,7 +1,8 @@
 import React from "react";
 
-import { render } from "@testing-library/react";
+import { render } from "../test-utils";
 
+import { loadingStates } from "../constants";
 import MainView from "../MainView";
 import * as api from "../api";
 
@@ -20,7 +21,7 @@ test("<MainView/> renders searcharea", () => {
 test("<MainView/> renders error screen when error", async () => {
   jest.spyOn(api, "fetchAlbums").mockRejectedValue(new Error("Async error"));
 
-  const { getByText } = render(<MainView error={true} />);
+  const { getByText } = render(<MainView loading={loadingStates.FAILED} />);
   expect(getByText(/Sorry, an error occured/i)).toBeInTheDocument();
 });
 
@@ -36,6 +37,8 @@ const fakeItems = [
 ];
 
 test("<MainView/> renders results when given", async () => {
-  const { getByTestId } = render(<MainView items={fakeItems} />);
+  const { getByTestId } = render(
+    <MainView loading={loadingStates.SUCCEEDED} items={fakeItems} />
+  );
   expect(getByTestId("results-container")).toBeInTheDocument();
 });

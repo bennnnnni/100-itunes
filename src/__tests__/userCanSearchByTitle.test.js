@@ -1,37 +1,36 @@
 import React from "react";
 
-import { getByPlaceholderText, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "../test-utils";
 import userEvent from "@testing-library/user-event";
 
 import MainView from "../MainView";
-import * as fetchModule from "../fetchAlbums";
+import { loadingStates } from "../constants";
 
 const fakeAlbum = {
-  "im:name": { label: "fake title" },
-  "im:artist": {
-    label: "fake artist",
-  },
-  "im:releaseDate": { attributes: { label: "12 november 2020" } },
-  category: { attributes: { term: "fake genre" } },
-  "im:image": [{}, {}, { label: "fakeImgURL" }],
+  rank: 1,
+  name: "fake title",
+  artist: "fake artist",
+  year: "fake year",
+  img: "fake img",
+  genre: "fake",
 };
 
 const fakeAlbum2 = {
-  "im:name": { label: "fake title 2" },
-  "im:artist": {
-    label: "fake artist",
-  },
-  "im:releaseDate": { attributes: { label: "12 november 2020" } },
-  category: { attributes: { term: "fake genre" } },
-  "im:image": [{}, {}, { label: "fakeImgURL" }],
+  rank: 2,
+  name: "fake title 2",
+  artist: "fake artist 2",
+  year: "fake year 2",
+  img: "fake img 2",
+  genre: "fake 2",
 };
 
 test("users can search for album title", async () => {
-  jest
-    .spyOn(fetchModule, "fetchAlbums")
-    .mockResolvedValue([fakeAlbum, fakeAlbum2]);
-
-  const { getByTestId, getByPlaceholderText } = render(<MainView />);
+  const { getByTestId, getByPlaceholderText } = render(
+    <MainView
+      items={[fakeAlbum, fakeAlbum2]}
+      loading={loadingStates.SUCCEEDED}
+    />
+  );
   await waitFor(() => {
     expect(getByTestId("results-container")).toBeInTheDocument();
     expect(getByTestId("results-container").childNodes.length).toEqual(2);
