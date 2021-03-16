@@ -5,7 +5,7 @@ export const transformAlbums = albums => {
   try {
     transformedAlbums = albums.map((album, idx) => {
       return {
-        id: nanoid(),
+        id: `album_${nanoid()}`,
         rank: idx + 1,
         artist: album["im:artist"].label,
         name: album["im:name"].label,
@@ -26,7 +26,7 @@ export const transformPodcasts = podcasts => {
   try {
     transformedPodcasts = podcasts.map((podacast, idx) => {
       return {
-        id: nanoid(),
+        id: `podcast_${nanoid()}`,
         rank: idx + 1,
         artist: podacast.artistName,
         name: podacast.name,
@@ -40,4 +40,14 @@ export const transformPodcasts = podcasts => {
     console.error(e);
   }
   return transformedPodcasts;
+};
+
+export const isAlbum = item => {
+  if (item.id.startsWith("album")) return true;
+  return false;
+};
+
+export const isPodcast = item => {
+  if (item.id.startsWith("podcast")) return true;
+  return false;
 };
