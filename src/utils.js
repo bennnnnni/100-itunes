@@ -24,15 +24,15 @@ export const transformAlbums = albums => {
 export const transformPodcasts = podcasts => {
   let transformedPodcasts = null;
   try {
-    transformedPodcasts = podcasts.map((podacast, idx) => {
+    transformedPodcasts = podcasts.map((podcast, idx) => {
       return {
-        id: `podcast_${nanoid()}`,
+        id: `album_${nanoid()}`,
         rank: idx + 1,
-        artist: podacast.artistName,
-        name: podacast.name,
-        img: podacast.artworkUrl100,
-        year: podacast.releaseDate.split("-")[0],
-        genre: podacast.genres[0].name,
+        artist: podcast["im:artist"].label,
+        name: podcast["im:name"].label,
+        img: podcast["im:image"][2].label,
+        year: podcast["im:releaseDate"].attributes.label.split(" ")[2],
+        genre: podcast.category.attributes.label,
         fav: false,
       };
     });
