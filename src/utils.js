@@ -26,7 +26,7 @@ export const transformPodcasts = podcasts => {
   try {
     transformedPodcasts = podcasts.map((podcast, idx) => {
       return {
-        id: `album_${nanoid()}`,
+        id: `podcast_${nanoid()}`,
         rank: idx + 1,
         artist: podcast["im:artist"].label,
         name: podcast["im:name"].label,
