@@ -13,3 +13,14 @@ export const fetchAlbums = async () => {
   const data = await response.json();
   return data.feed.entry;
 };
+
+export const getUser = async userId => {
+  try {
+    const url = `http://localhost:5000/user/${userId}`;
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
